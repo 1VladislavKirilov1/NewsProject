@@ -18,5 +18,6 @@ class PostDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['time_now'] = datetime.utcnow()
+        return context
 
 
