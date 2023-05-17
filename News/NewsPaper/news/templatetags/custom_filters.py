@@ -2,9 +2,6 @@ from django import template
 
 register = template.Library()
 
-bad_words = {
-    'Music': 'M***c',
-}
 
 text = 'New Music Online'
 x = text.split()
