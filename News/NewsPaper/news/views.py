@@ -24,8 +24,8 @@ class PostDetail(DetailView):
 
 
 class PostSearch(ListView):
-    form_class = PostFilter
     model = Post
+    form_class = PostFilter
     template_name = 'search.html'
     context_object_name = 'search'
 
