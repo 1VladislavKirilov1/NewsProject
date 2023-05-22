@@ -18,6 +18,7 @@ Posts
                <td>Дата создания</td>
                <td>Текст</td>
                <td>Категория</td>
+               <td>Тип</td>
            </tr>
 
            {% for post in posts %}
@@ -29,6 +30,7 @@ Posts
                {{ category.name }}
                    {% endfor %}
                </td>
+               <td>{{ post.categoryType }}</td>
            </tr>
            {% endfor %}
 

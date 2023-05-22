@@ -21,3 +21,14 @@ class PostForm(forms.ModelForm):
             )
 
         return cleaned_data
+
+
+class ArticleForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = [
+            'title',
+            'postCategory',
+            'text',
+            'author'
+        ]
