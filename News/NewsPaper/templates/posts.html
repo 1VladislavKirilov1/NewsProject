@@ -11,6 +11,11 @@ Posts
    <h1>Все новости</h1>
     <h3>{{ posts|length }}</h3>
    <hr>
+
+   {% if perms.news.add_post %}
+   <a href="{% url 'post_create' %}">Добавить новость</a>
+   {% endif %}
+
    {% if posts %}
        <table>
            <tr>
@@ -19,6 +24,10 @@ Posts
                <td>Текст</td>
                <td>Категория</td>
                <td>Тип</td>
+
+               {% if perms.news.change_post or perms.news.delete_post %}
+               <td>Действия</td>
+               {% endif %}
            </tr>
 
            {% for post in posts %}
@@ -31,6 +40,16 @@ Posts
                    {% endfor %}
                </td>
                <td>{{ post.categoryType }}</td>
+               <td>
+                   {% if perms.news.change_post %}
+               <a href="{% url 'post_update' pk=post.id %}">Изменить</a>
+                   {% endif %}
+                   {% if perms.news.delete_post %}
+               <a href="{% url 'post_delete' post.id %}">Удалить</a>
+                   {% endif %}
+                   </td>
+               </td>
+
            </tr>
            {% endfor %}
 

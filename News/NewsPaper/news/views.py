@@ -1,5 +1,5 @@
 from datetime import datetime
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .forms import PostForm, ArticleForm
@@ -43,8 +43,8 @@ class PostSearch(ListView):
         return context
 
 
-class PostCreate(LoginRequiredMixin, CreateView):
-    raise_exception = True
+class PostCreate(PermissionRequiredMixin, CreateView):
+    permission_required = ('news.add_post',)
     form_class = PostForm
     model = Post
     template_name = 'post_edit.html'
@@ -55,8 +55,8 @@ class PostCreate(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class ArticleCreate(LoginRequiredMixin, CreateView):
-    raise_exception = True
+class ArticleCreate(PermissionRequiredMixin, CreateView):
+    permission_required = ('news.add_post',)
     form_class = ArticleForm
     model = Post
     template_name = 'article_edit.html'
@@ -67,8 +67,8 @@ class ArticleCreate(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class PostUpdate(LoginRequiredMixin, UpdateView):
-    raise_exception = True
+class PostUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = ('news.change_post',)
     form_class = PostForm
     model = Post
     template_name = 'post_edit.html'
@@ -79,8 +79,8 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-class ArticleUpdate(LoginRequiredMixin, UpdateView):
-    raise_exception = True
+class ArticleUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = ('news.change_post',)
     form_class = PostForm
     model = Post
     template_name = 'article_edit.html'
@@ -92,8 +92,8 @@ class ArticleUpdate(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-class PostDelete(LoginRequiredMixin, DeleteView):
-    raise_exception = True
+class PostDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = ('news.delete_post',)
     model = Post
     template_name = 'post_delete.html'
     success_url = reverse_lazy('post_list')
@@ -104,8 +104,8 @@ class PostDelete(LoginRequiredMixin, DeleteView):
         return super().form_valid(form)
 
 
-class ArticleDelete(LoginRequiredMixin, DeleteView):
-    raise_exception = True
+class ArticleDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = ('news.delete_post',)
     model = Post
     template_name = 'article_delete.html'
     success_url = reverse_lazy('post_list')
