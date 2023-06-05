@@ -159,10 +159,10 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 SITE_URL = 'http://127.0.0.1:8000'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = 'smtp.yandex.ru'
-EMAIL_PORT = 465
-EMAIL_HOST_USER = "Ivanvinilov2289@yandex.ru"
-EMAIL_HOST_PASSWORD = "daictpzcbgglbokd"
+EMAIL_HOST = ''
+EMAIL_PORT =
+EMAIL_HOST_USER = ""
+EMAIL_HOST_PASSWORD = ""
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
