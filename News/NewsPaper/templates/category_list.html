@@ -10,6 +10,9 @@ Posts
 {% block content %}
    <h1>Все новости</h1>
     <h3>{{ posts|length }}</h3>
+    {% if is_not_subscriber %}
+        <a href="{% url 'subscribe' category.id %}">Подписаться</a>
+    {% endif %}
    <hr>
 
    {% if perms.news.add_post %}
@@ -30,7 +33,7 @@ Posts
                {% endif %}
            </tr>
 
-           {% for post in posts %}
+           {% for post in category_news_list %}
            <tr>
                <td>{{ post.title }}</td>
                <td>{{ post.dateCreation|date:'d. M. Y' }}</td>
