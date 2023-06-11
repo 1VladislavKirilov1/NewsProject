@@ -173,3 +173,9 @@ DEFAULT_FROM_EMAIL = "example@yandex.ru"
 APSCHEDULER_DATETIME_FORMAT = 'N, j, Y, f:s a'
 
 APSCHEDULER_RUN_NOW_TIMEOUT = 25
+
+CELERY_BROKER_URL = 'redis://default:j8mtC8KNIhwP1cj72FbRHLiK6z4p5A8S@redis-17435.c232.us-east-1-2.ec2.cloud.redislabs.com:17435'
+CELERY_RESULT_BACKEND = 'redis://default:j8mtC8KNIhwP1cj72FbRHLiK6z4p5A8S@redis-17435.c232.us-east-1-2.ec2.cloud.redislabs.com:17435'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
