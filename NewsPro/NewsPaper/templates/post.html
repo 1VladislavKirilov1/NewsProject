@@ -1,10 +1,11 @@
 {% extends 'flatpages/default.html' %}
-
+{% load cache %}
 {% block title %}
 Post
 {% endblock title %}
 
 {% block content %}
+{% cache 30 details %}
     <table>
            <tr>
                <td>Заголовок</td>
@@ -19,4 +20,5 @@ Post
            </tr>
 
        </table>
+{% endcache %}
 {% endblock content %}
