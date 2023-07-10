@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
     'django_apscheduler',
-    'news.apps.NewsConfig',
     'NewsPaper',
     'fpages',
     'django_filters',
@@ -48,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.yandex',
+    'news.apps.NewsConfig',
 ]
 
 SITE_ID = 1
