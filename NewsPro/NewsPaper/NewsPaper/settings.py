@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+import logging
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,6 +25,65 @@ SECRET_KEY = 'django-insecure-&21pl-#(+*)*c(-)%8x(59lbv&nrh66=a7*m5k#fn1_2_x9_@+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'style': '{',
+    'formatters': {
+        'debug': {
+            'format': '%(levelname)s %(message)s %(asctime)s'
+        },
+        'warning': {
+            'format': '%(levelname)s %(message)s %(asctime)s %(pathname)s'
+        },
+        'error': {
+            'format': '%(levelname)s %(message)s %(asctime)s %(pathname)s %(exc_info)s'
+        },
+        'module': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(message)s'
+        }
+    },
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'file_info': {
+            'level': 'INFO',
+            'backupCount': 5,
+            'filename': 'general.log',
+            'filters': ['require_debug_false'],
+            'class': 'logging.RotatingFileHandler',
+            'formatter': 'module'
+
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler'
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+        }
+    }
+}
 
 ALLOWED_HOSTS = []
 
