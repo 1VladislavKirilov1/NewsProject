@@ -61,8 +61,14 @@ LOGGING = {
              'class': 'logging.StreamHandler',
              'formatter': 'debug'
          },
+         'warning_console': {
+             'level': 'WARNING',
+             'filters': ['require_debug_true'],
+             'class': 'logging.StreamHandler',
+             'formatter': 'warning'
+         },
          'file_info': {
-             'level': 'INFO',
+             'level': 'DEBUG',
              'filename': 'general.log',
              'filters': ['require_debug_false'],
              'class': 'logging.FileHandler',
@@ -93,7 +99,7 @@ LOGGING = {
              'propagate': True,
          },
          'django.request': {
-             'handlers': ['mail_admins'],
+             'handlers': ['mail_admins', 'file_error'],
              'level': 'ERROR',
              'propagate': False,
          },
@@ -113,6 +119,8 @@ LOGGING = {
 
      }
  }
+
+ADMINS = [("Ivan", "Ivanvinilov2289@yandex.ru")]
 
 ALLOWED_HOSTS = []
 
