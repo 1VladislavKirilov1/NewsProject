@@ -16,7 +16,7 @@ Posts
 <hr>
 
    {% if perms.news.add_post %}
-   <a href="{% url 'post_create' %}">Добавить новость</a>
+   <a href="{% url 'post_create' %}">{% trans 'Добавить новость' %}</a>
    {% endif %}
 
    {% if posts %}
@@ -58,7 +58,7 @@ Posts
 
        </table>
    {% else %}
-       <h2>Новостей нет!</h2>
+       <h2>{% trans 'Новостей нет!' %}</h2>
 
    {% endif %}
         {% if page_obj.has_previous %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-02 15:59+0300\n"
+"POT-Creation-Date: 2023-08-02 17:50+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,6 +25,10 @@ msgstr ""
 #: .\templates\posts.html:14
 msgid "Все новости"
 msgstr "All news"
+
+#: .\templates\posts.html:19
+msgid "Добавить новость"
+msgstr "Add news"
 
 #: .\templates\posts.html:25
 msgid "Заголовок"
@@ -57,6 +61,10 @@ msgstr "Edit"
 #: .\templates\posts.html:51
 msgid "Удалить"
 msgstr "Delete"
+
+#: .\templates\posts.html:61
+msgid "Новостей нет!"
+msgstr "There is no news!"
 
 #~ msgid "Зацени мой перевод"
 #~ msgstr "Check out my new cool translation"
