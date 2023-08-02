@@ -1,14 +1,40 @@
 from datetime import datetime
-
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.http import HttpResponse
+from django.utils.translation import gettext as _
+from django.utils.translation import activate, get_supported_language_variant
+from django.utils import timezone
+from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .forms import PostForm, ArticleForm
 from .models import Post, Category
 from .filters import PostFilter
 from django.core.cache import cache
+import pytz
+
+
+class Index(View):
+    def get(self, request):
+
+        current_time = timezone.now()
+
+        models = Post.objects.all()
+
+        context = {
+            'models': models,
+            'current_time': timezone.now(),
+            'timezones': pytz.common_timezones
+        }
+
+        return HttpResponse(render(request, 'default.html', context))
+
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('/')
 
 
 class PostList(ListView):

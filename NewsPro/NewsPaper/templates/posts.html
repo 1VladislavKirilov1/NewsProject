@@ -1,5 +1,6 @@
 {% extends 'flatpages/default.html' %}
 
+{% load i18n %}
 {% load custom_filters %}
 {% load custom_tags %}
 {% load cache %}
@@ -10,7 +11,7 @@ Posts
 
 {% block content %}
 {% cache 5 main %}
-        <h1>Все новости</h1>
+        <h1>{% trans 'Все новости' %}</h1>
         <h3>{{ posts|length }}</h3>
 <hr>
 
@@ -21,14 +22,14 @@ Posts
    {% if posts %}
        <table>
            <tr>
-               <td>Заголовок</td>
-               <td>Дата создания</td>
-               <td>Текст</td>
-               <td>Категория</td>
-               <td>Тип</td>
+               <td>{% trans 'Заголовок' %}</td>
+               <td>{% trans 'Дата создания' %}</td>
+               <td>{% trans 'Текст' %}</td>
+               <td>{% trans 'Категория' %}</td>
+               <td>{% trans 'Тип' %}</td>
 
                {% if perms.news.change_post or perms.news.delete_post %}
-               <td>Действия</td>
+               <td>{% trans 'Действия' %}</td>
                {% endif %}
            </tr>
 
@@ -44,10 +45,10 @@ Posts
                <td>{{ post.categoryType }}</td>
                <td>
                    {% if perms.news.change_post %}
-               <a href="{% url 'post_update' pk=post.id %}">Изменить</a>
+               <a href="{% url 'post_update' pk=post.id %}">{% trans 'Изменить' %}</a>
                    {% endif %}
                    {% if perms.news.delete_post %}
-               <a href="{% url 'post_delete' post.id %}">Удалить</a>
+               <a href="{% url 'post_delete' post.id %}">{% trans 'Удалить' %}</a>
                    {% endif %}
                    </td>
                </td>
