@@ -16,6 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
+from rest_framework import routers
+from news import views
+
+
+router = routers.DefaultRouter()
+router.register(r'posts', views.PostViewSet)
+router.register(r'authors', views.AuthorViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,5 +31,10 @@ urlpatterns = [
     path('pages/', include('django.contrib.flatpages.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
     path('', include('news.urls')),
-
+    path('swagger-ui/', TemplateView.as_view(
+        template_name='swagger.html',
+        extra_context={'schema_url': 'openapi-schema'}
+    ), name='swagger-ui'),
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

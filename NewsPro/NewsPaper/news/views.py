@@ -2,8 +2,6 @@ from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.http import HttpResponse
-from django.utils.translation import gettext as _
-from django.utils.translation import activate, get_supported_language_variant
 from django.utils import timezone
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404, render
@@ -11,9 +9,11 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .forms import PostForm, ArticleForm
-from .models import Post, Category
+from news.models import Post, Category, Author
 from .filters import PostFilter
 from django.core.cache import cache
+from rest_framework import viewsets, permissions
+from news.serializers import *
 import pytz
 
 
@@ -178,6 +178,17 @@ def subscribe(request, pk):
 
     message = 'Вы успешно подписались на рассылку категории'
     return render(request, 'subscribe.html', {'category': category, 'message': message})
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+
+class AuthorViewSet(viewsets.ModelViewSet):
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer
 
 
 
